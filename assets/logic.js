@@ -51,7 +51,48 @@ console.log(time);
   $("#time").val("");
   $("#frequency").val("");
 });
+var thisTime = function(){
+  time = moment().format('HHmm');
+  mins = time % 100;
+  hours = (time-mins)/100
+  timeArr = [hours,mins]
+  return timeArr;
 
+}
+var convertTime = function(arg){
+  if (arg.length === 5){
+    hours = ''+arg[0]+arg[1];
+    hours = parseInt(hours.trim());
+    mins = ''+arg[3]+arg[4];
+    mins = parseInt(mins.trim());
+    return [hours,mins];
+    
+  } 
+}
+
+    // First Time (pushed back 1 year to make sure it comes before current time)
+    var timeConverted = moment(time, "hh:mm").subtract(1, "years");
+    console.log(timeConverted);
+
+    // Current Time
+    var currentTime = moment();
+    console.log("CURRENT TIME: " + moment(currentTime).format("hh:mm"));
+
+    // Difference between the times
+    var diffTime = moment().diff(moment(timeConverted), "minutes");
+    console.log("DIFFERENCE IN TIME: " + diffTime);
+
+    // Time apart (remainder)
+    var tRemainder = diffTime % frequency;
+    console.log(tRemainder);
+
+    // Minute Until Train
+    var tMinutesTillTrain = frequency - tRemainder;
+    console.log("MINUTES TILL TRAIN: " + tMinutesTillTrain);
+
+    // Next Train
+    var nextTrain = moment().add(tMinutesTillTrain, "minutes");
+    console.log("ARRIVAL TIME: " + moment(nextTrain).format("hh:mm"));
 // 3. Create Firebase event for adding employee to the database and a row in the html when a user adds an entry
 database.ref().on("child_added", function(childSnapshot, prevChildKey) {
   // console.log(childSnapshot.getKey())
@@ -70,13 +111,5 @@ database.ref().on("child_added", function(childSnapshot, prevChildKey) {
 
   // Add each train's data into the table
   $("#trainTimes > tbody").append("<tr><td>" + name + "</td><td>" + destination + "</td><td>" +
-  time + "</td><td>" + frequency + "</td><td>");
-});
-
-// Example Time Math
-// -----------------------------------------------------------------------------
-// Assume Employee start date of January 1, 2015
-// Assume current date is March 1, 2016
-
-// We know that this is 15 months.
-// Now we will create code in moment.js to confirm that any attempt we use mets this test case
+  time + "</td><td>" + frequency + "</td><td>" + tMinutesTillTrain + "</td><td>" + nextTrain +"</td></tr>");
+}); 
