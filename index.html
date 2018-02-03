@@ -33,6 +33,12 @@ In this assignment, you'll create a train schedule application that incorporates
  <html>
  <head>
  	<title>Train Times</title>
+  <script src="https://www.gstatic.com/firebasejs/4.9.1/firebase.js"></script>
+        <!-- Bootstrap -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/momentjs/2.12.0/moment.min.js"></script>
  </head>
  <body>
  	<div class="container">
@@ -42,12 +48,12 @@ In this assignment, you'll create a train schedule application that incorporates
  		<div class="col-md-12">
  			<thead class="col-md-12">
                   <tr>
-                    <th>Name</th>
-                    <th>Destination</th>
-                    <th>Time</th>
-                    <th>Frequency</th>
-                    <th>Next Arrival</th>
-                    <th>Minutes Away</th>
+                    <th class="col-md-3">Name</th>
+                    <th class="col-md-3">Destination</th>
+                    <th class="col-md-3">Time</th>
+                    <th class="col-md-3">Frequency</th>
+                    <th class="col-md-3">Next Arrival</th>
+                    <th class="col-md-3">Minutes Away</th>
                   </tr>
             </thead>
  			<tbody id="trainTimes">
@@ -85,14 +91,7 @@ In this assignment, you'll create a train schedule application that incorporates
  				</div>
  			</form>
  		</div>
- 	<script src="https://cdn.jsdelivr.net/momentjs/2.12.0/moment.min.js"></script>
-  	<script src="assets/logic.js"></script>
-      <!-- Bootstrap -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <script src="assets/logic.js"></script>
 
-    <!-- Firebase Reference -->
-<script src="https://www.gstatic.com/firebasejs/4.9.1/firebase.js"></script>
  </body>
  </html>

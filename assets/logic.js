@@ -8,7 +8,6 @@
     storageBucket: "",
     messagingSenderId: "731485325698"
   };
-
 firebase.initializeApp(config);
 
 var database = firebase.database();
@@ -19,8 +18,12 @@ $("#submit").on("click", function(event) {
 
   // Grabs user input
   var name = $("#name").val().trim();
+  
   var destination = $("#destination").val().trim();
-  var time = moment($("#time").val().trim(), "DD/MM/YY").format("X"); //UNIX time-stamp in seconds
+  
+  var time = moment($("#time"), "hh:mm").subtract(1, "years");
+  console.log(time); //UNIX time-stamp in seconds
+  
   var frequency = $("#frequency").val().trim();
   // Creates local "temporary" object for holding employee data
   var newTrain = {
@@ -40,7 +43,7 @@ $("#submit").on("click", function(event) {
   console.log(newTrain.frequency);
 
   // Alert
-  alert("Employee successfully added");
+  alert("Train Added");
 
   // Clears all of the text-boxes
   $("#name").val("");
