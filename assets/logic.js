@@ -31,7 +31,16 @@ $("#submit").on("click", function(event) {
     time: time,
     frequency: frequency
   };
+
+  database.ref().push(newTrain);
+
+  $("#name").val("");
+  $("#destination").val("");
+  $("#time").val("");
+  $("#frequency").val("");
+});
   database.ref().on("child_added", function(childSnapshot, prevChildKey) {
+    event.preventDefault();
 
   var name = childSnapshot.val().name;
   var destination = childSnapshot.val().destination;
@@ -43,37 +52,44 @@ $("#submit").on("click", function(event) {
   console.log(time);
   console.log(frequency);
 
+  var timeConverted = moment(time, "hh:mm");
+  console.log(timeConverted);
+
+  var currentTime = moment();
+  console.log("CURRENT TIME: " + moment(currentTime).format("hh:mm"));
+
+  var diffTime = moment().diff(moment(timeConverted), "minutes");
+  console.log(diffTime);
+
+  var tRemainder = diffTime % frequency;
+  console.log(tRemainder);
+  var tMinutesTillTrain = frequency - tRemainder;
+  console.log(tMinutesTillTrain)
+
+
   $("#trainTimes > tbody").append("<tr><td>" + name + "</td><td>" + destination + "</td><td>" +
-  time + "</td><td>" + frequency + "</td><td>" + tMinutesTillTrain + "</td><td>" + nextTrain +"</td></tr>");
+  time + "</td><td>" + frequency + "</td><td>" + tMinutesTillTrain + "</td><tr>")
 }); 
 
-  database.ref().push(newTrain);
 
-  console.log(newTrain.name);
-  console.log(newTrain.destination);
-  console.log(newTrain.time);
-  console.log(newTrain.frequency);
 
-  console.log("Train Added");
 
-  $("#name").val("");
-  $("#destination").val("");
-  $("#time").val("");
-  $("#frequency").val("");
-});
+// var time = moment($("#time").val(), "hh:mm")
 
-var time = moment($("#time").val(), "hh:mm").subtract(1, "years");
+// var timeConverted = moment(time, "hh:mm").subtract(1, "years");
+// console.log(timeConverted);
 
-var timeConverted = moment(time, "hh:mm").subtract(1, "years");
+// var currentTime = moment();
+// console.log("CURRENT TIME: " + moment(currentTime).format("hh:mm"));
 
-var currentTime = moment();
-console.log("CURRENT TIME: " + moment(currentTime).format("hh:mm"));
+// var diffTime = moment().diff(moment(timeConverted), "minutes");
+// console.log(diffTime);
 
-var diffTime = moment().diff(moment(timeConverted), "minutes");
+// var tRemainder = diffTime % frequency;
+// console.log(tRemainder);
+// var tMinutesTillTrain = frequency - tRemainder;
+// console.log(tMinutesTillTrain)
 
-var tRemainder = diffTime % frequency;
-
-var tMinutesTillTrain = frequency - tRemainder;
-
-var nextTrain = moment().add(tMinutesTillTrain, "minutes");
+// var nextTrain = moment().add(tMinutesTillTrain, "minutes");
+// console.log(nextTrain)
 
