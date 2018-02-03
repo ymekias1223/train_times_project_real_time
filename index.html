@@ -1,0 +1,98 @@
+<!-- 
+### Overview
+
+In this assignment, you'll create a train schedule application that incorporates Firebase to host arrival and departure data. Your app will retrieve and manipulate this information with Moment.js. This website will provide up-to-date information about various trains, namely their arrival times and how many minutes remain until they arrive at their station.
+
+- - -
+
+### Setup
+
+* We'll leave that up to you however you like. Just make sure you're using Firebase to store data, GitHub to backup your project, and GithHub Pages to host your finished site.
+
+### Instructions
+
+* Make sure that your app suits this basic spec:
+  
+  * When adding trains, administrators should be able to submit the following:
+    
+    * Train Name
+    
+    * Destination 
+    
+    * First Train Time  in military time
+    
+    * Frequency  in minutes
+  
+  * Code this app to calculate when the next train will arrive; this should be relative to the current time.
+  
+  * Users from many different machines must be able to view same train times.
+  
+  * Styling and theme are completely up to you. Get Creative!
+ -->
+ <!DOCTYPE html>
+ <html>
+ <head>
+ 	<title>Train Times</title>
+ </head>
+ <body>
+ 	<div class="container">
+ 		<div class="jumbotron">
+ 			<h1> Train Times </h1>
+ 		</div>
+ 		<div class="col-md-12">
+ 			<thead class="col-md-12">
+                  <tr>
+                    <th>Name</th>
+                    <th>Destination</th>
+                    <th>Time</th>
+                    <th>Frequency</th>
+                    <th>Next Arrival</th>
+                    <th>Minutes Away</th>
+                  </tr>
+            </thead>
+ 			<tbody id="trainTimes">
+               
+ 			</tbody>
+ 		</div>
+ 		<div class="log_train">
+ 			<form>
+ 				<div class="col-md-12">
+ 				Train Name 
+ 				</div>
+ 				<div class="col-md-12">
+ 				<input type="text" id="name">
+ 				</div>
+ 				<div class="col-md-12">
+ 				Destination
+ 				</div>
+ 				<div class="col-md-12">
+ 				<input type="text" id="destination">
+ 				</div>
+ 				<div class="col-md-12">
+ 				First Train Time (HH:mm - Military Time)
+ 				</div>
+ 				<div class="col-md-12">
+ 				<input type="text" id="time">
+ 				</div>
+ 				<div class="col-md-12">
+ 				Frequency
+ 				</div>
+ 				<div class="col-md-12">
+ 				<input type="text" id="frequency">
+ 				</div>
+ 				<div class="col-md-12">
+ 				<button id="submit"> Submit</button>
+ 				</div>
+ 			</form>
+ 		</div>
+ 	<script src="https://cdn.jsdelivr.net/momentjs/2.12.0/moment.min.js"></script>
+  	<script src="assets/logic.js"></script>
+      <!-- Bootstrap -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+    <!-- Firebase Reference -->
+<script src="https://www.gstatic.com/firebasejs/4.9.1/firebase.js"></script>
+ </body>
+ </html>
